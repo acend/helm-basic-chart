@@ -1,0 +1,29 @@
+{{- $fullName := include "helm-basic-chart.fullname" . -}}
+{{- $all := . -}}
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "helm-basic-chart.fullname" . }}-test-connection"
+  labels:
+    {{- include "helm-basic-chart.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - image: "registry.puzzle.ch/docker.io/mariadb:10.5"
+      name: mariadb
+      imagePullPolicy: always
+      command: ['mysql']
+      args: ['--host=$(MYSQL_DATABASE_HOST)', '--user=$(MYSQL_DATABASE_USER)', '--password=$(MYSQL_DATABASE_PASSWORD)']
+      env:
+      - name: MYSQL_DATABASE_HOST
+        value: mariadb
+      - name: MYSQL_DATABASE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            key: mariadb-password
+            name: {{ include "helm-basic-chart.fullname" . }}
+      - name: MYSQL_DATABASE_USER
+        value: dummy
+  restartPolicy: Never
