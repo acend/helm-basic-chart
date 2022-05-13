@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app: {{ include "helm-basic-chart.fullname" . }}-consumer
+  name: {{ include "helm-basic-chart.fullname" . }}-consumer
+spec:
+  rules:
+    - host: consumer-user00.labapp.acend.ch
+      http:
+        paths:
+          - backend:
+              service:
+                name: {{ include "helm-basic-chart.fullname" . }}-consumer
+                port:
+                  number: 80
+            path: /
+            pathType: ImplementationSpecific
+  tls:
+    - hosts:
+        - consumer-user00.labapp.acend.ch
+      secretName: consumer-labapp-acend-ch

@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app: {{ include "helm-basic-chart.fullname" . }}-producer
+  name: {{ include "helm-basic-chart.fullname" . }}-producer
+spec:
+  rules:
+    - host: producer-user00.labapp.acend.ch
+      http:
+        paths:
+          - backend:
+              service:
+                name: {{ include "helm-basic-chart.fullname" . }}-producer
+                port:
+                  number: 80
+            path: /
+            pathType: ImplementationSpecific
+  tls:
+    - hosts:
+        - producer-user00.labapp.acend.ch
+      secretName: producer-labapp-acend-ch

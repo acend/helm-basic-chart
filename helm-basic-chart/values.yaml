@@ -1,1 +1,4 @@
-# No values yet :-)
+producer:
+
+consumer:
+  tag: latest
