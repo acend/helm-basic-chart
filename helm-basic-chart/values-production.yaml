@@ -1,0 +1,23 @@
+producer:
+  host: producer-<username>-prod.labapp.acend.ch
+  logLevel: INFO
+  resources:
+    limits:
+      cpu: '1'
+      memory: 750Mi
+    requests:
+      cpu: 50m
+      memory: 100Mi
+  tag: v1.0.0
+
+consumer:
+  logLevel: INFO
+  host: consumer-<username>-prod.labapp.acend.ch
+  resources:
+    limits:
+      cpu: '1'
+      memory: 750Mi
+    requests:
+      cpu: 50m
+      memory: 100Mi
+  tag: v1.0.0
