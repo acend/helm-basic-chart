@@ -1,4 +1,19 @@
 producer:
+  tag: latest
+  resources:
+    limits:
+      cpu: '1'
+      memory: 500Mi
+    requests:
+      cpu: 50m
+      memory: 100Mi
 
 consumer:
   tag: latest
+  resources:
+    limits:
+      cpu: '1'
+      memory: 500Mi
+    requests:
+      cpu: 50m
+      memory: 100Mi
