@@ -3,13 +3,12 @@ kind: Deployment
 metadata:
   labels:
     {{- include "helm-basic-chart.labels" . | nindent 4 }}
-  name: {{ include "helm-basic-chart.fullname" . }}
+  name: {{ include "helm-basic-chart.fullname" . }}-mariadb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/instance: myapp
-      app.kubernetes.io/name: mariadb
+        {{- include "helm-basic-chart.selectorLabels" . | nindent 6 }}
   strategy:
     type: Recreate
   template:

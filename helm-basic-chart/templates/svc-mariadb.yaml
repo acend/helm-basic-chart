@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     {{- include "helm-basic-chart.labels" . | nindent 4 }}
-  name: {{ include "helm-basic-chart.fullname" . }}
+  name: {{ include "helm-basic-chart.fullname" . }}-mariadb
 spec:
   clusterIP: None
   clusterIPs:

@@ -7,8 +7,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/instance: myapp
-      app.kubernetes.io/name: helm-basic-chart
+        {{- include "helm-basic-chart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
