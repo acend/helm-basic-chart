@@ -49,4 +49,4 @@ spec:
               name: http
               protocol: TCP
           resources:
-            {{ .Values.producer.resources }}
+            {{- toYaml .Values.producer.resources | nindent 12 }}
