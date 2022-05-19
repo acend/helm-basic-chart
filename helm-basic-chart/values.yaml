@@ -1,5 +1,6 @@
 producer:
-  tag: latest
+  host: producer-<username>.labapp.acend.ch
+  logLevel: DEBUG
   resources:
     limits:
       cpu: '1'
@@ -7,9 +8,11 @@ producer:
     requests:
       cpu: 50m
       memory: 100Mi
+  tag: latest
 
 consumer:
-  tag: latest
+  logLevel: DEBUG
+  host: consumer-<username>.labapp.acend.ch
   resources:
     limits:
       cpu: '1'
@@ -17,3 +20,4 @@ consumer:
     requests:
       cpu: 50m
       memory: 100Mi
+  tag: latest

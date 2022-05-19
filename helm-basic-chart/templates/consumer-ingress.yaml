@@ -6,7 +6,7 @@ metadata:
   name: {{ include "helm-basic-chart.fullname" . }}-consumer
 spec:
   rules:
-    - host: consumer-user00.labapp.acend.ch
+    - host: {{ .Values.consumer.host }}
       http:
         paths:
           - backend:
@@ -18,5 +18,5 @@ spec:
             pathType: ImplementationSpecific
   tls:
     - hosts:
-        - consumer-user00.labapp.acend.ch
+        - {{ .Values.consumer.host }}
       secretName: consumer-labapp-acend-ch
