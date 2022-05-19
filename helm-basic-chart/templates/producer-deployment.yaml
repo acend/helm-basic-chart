@@ -20,8 +20,11 @@ spec:
         app: {{ include "helm-basic-chart.fullname" . }}-producer
     spec:
       containers:
-        - image: quay.io/puzzle/quarkus-techlab-data-producer:latest
+        - image: quay.io/puzzle/quarkus-techlab-data-producer:{{ .Values.producer.tag }}
           imagePullPolicy: Always
+          env:
+          - name: QUARKUS_LOG_LEVEL
+            value: {{ .Values.producer.logLevel }}
           livenessProbe:
             failureThreshold: 5
             httpGet:
