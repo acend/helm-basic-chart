@@ -48,4 +48,4 @@ spec:
               name: http
               protocol: TCP
           resources:
-{{ .Values.consumer.resources}}
+            {{ .Values.consumer.resources}}
