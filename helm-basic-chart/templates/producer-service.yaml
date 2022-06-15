@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: {{ include "helm-basic-chart.fullname" . }}-producer
-  name: {{ include "helm-basic-chart.fullname" . }}-producer
+  name: data-producer
 spec:
   ports:
     - name: http
