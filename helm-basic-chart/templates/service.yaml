@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: {{ include "helm-basic-chart.fullname" . }}-consumer
-  name: data-consumer
+    app: {{ include "helm-basic-chart.fullname" . }}
+  name: {{ .Values.serviceName }}
 spec:
   ports:
     - name: http
@@ -11,6 +11,6 @@ spec:
       protocol: TCP
       targetPort: 8080
   selector:
-    deployment: {{ include "helm-basic-chart.fullname" . }}-consumer
+    deployment: {{ include "helm-basic-chart.fullname" . }}
   sessionAffinity: None
   type: ClusterIP

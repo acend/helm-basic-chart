@@ -1,6 +1,29 @@
-producer:
-  host: producer-<username>.labapp.acend.ch
-
 consumer:
-  tag: latest
-  host: consumer-<username>.labapp.acend.ch
+  host: consumer-USERNAME.labapp.acend.ch
+  image:
+    name: puzzle/quarkus-techlab-data-consumer
+    tag: latest
+  logLevel: INFO
+  resources:
+    limits:
+      cpu: '1'
+      memory: 750Mi
+    requests:
+      cpu: 50m
+      memory: 100Mi
+  serviceName: data-consumer
+
+producer:
+  host: producer-USERNAME.labapp.acend.ch
+  image:
+    name: puzzle/quarkus-techlab-data-producer
+    tag: latest
+  logLevel: INFO
+  resources:
+    limits:
+      cpu: '1'
+      memory: 750Mi
+    requests:
+      cpu: 50m
+      memory: 100Mi
+  serviceName: data-producer

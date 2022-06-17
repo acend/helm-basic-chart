@@ -2,25 +2,28 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: {{ include "helm-basic-chart.fullname" . }}-consumer
-  name: data-consumer
+    app: {{ include "helm-basic-chart.fullname" . }}
+  name: {{ .Values.serviceName }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      deployment: {{ include "helm-basic-chart.fullname" . }}-consumer
-      app: {{ include "helm-basic-chart.fullname" . }}-consumer
+      deployment: {{ include "helm-basic-chart.fullname" . }}
+      app: {{ include "helm-basic-chart.fullname" . }}
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        deployment: {{ include "helm-basic-chart.fullname" . }}-consumer
-        app: {{ include "helm-basic-chart.fullname" . }}-consumer
+        deployment: {{ include "helm-basic-chart.fullname" . }}
+        app: {{ include "helm-basic-chart.fullname" . }}
     spec:
       containers:
-        - image: quay.io/puzzle/quarkus-techlab-data-consumer:{{ .Values.consumer.tag }}
+        - image: quay.io/{{ .Values.image.name }}:{{ .Values.image.tag }}
           imagePullPolicy: Always
+          env:
+          - name: QUARKUS_LOG_LEVEL
+            value: {{ .Values.logLevel }}
           livenessProbe:
             failureThreshold: 5
             httpGet:
@@ -39,15 +42,10 @@ spec:
             initialDelaySeconds: 3
             periodSeconds: 20
             timeoutSeconds: 15
-          name: data-consumer
+          name: {{ .Values.serviceName }}
           ports:
             - containerPort: 8080
               name: http
               protocol: TCP
           resources:
-            limits:
-              cpu: '1'
-              memory: 500Mi
-            requests:
-              cpu: 50m
-              memory: 100Mi
+            {{- toYaml .Values.resources | nindent 12 }}

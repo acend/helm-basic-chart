@@ -2,21 +2,21 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   labels:
-    app: {{ include "helm-basic-chart.fullname" . }}-producer
-  name: data-producer
+    app: {{ include "helm-basic-chart.fullname" . }}
+  name: {{ .Values.serviceName }}
 spec:
   rules:
-    - host: producer-user00.labapp.acend.ch
+    - host: {{ .Values.host }}
       http:
         paths:
           - backend:
               service:
-                name: data-producer
+                name: {{ .Values.serviceName }}
                 port:
                   number: 8080
             path: /
             pathType: ImplementationSpecific
   tls:
     - hosts:
-        - producer-user00.labapp.acend.ch
-      secretName: producer-labapp-acend-ch
+        - {{ .Values.host }}
+      secretName: labapp-acend-ch
