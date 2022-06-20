@@ -21,6 +21,9 @@ spec:
       containers:
         - image: quay.io/puzzle/quarkus-techlab-data-producer:latest
           imagePullPolicy: Always
+          env:
+          - name: QUARKUS_LOG_LEVEL
+            value: "DEBUG"
           livenessProbe:
             failureThreshold: 5
             httpGet:
