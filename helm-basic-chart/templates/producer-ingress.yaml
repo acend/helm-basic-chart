@@ -8,7 +8,7 @@ metadata:
   name: {{ include "helm-basic-chart.fullname" . }}-producer
 spec:
   rules:
-    - host: {{ .Values.consumer.host }}
+    - host: {{ .Values.producer.host }}
       http:
         paths:
           - backend:
@@ -20,5 +20,5 @@ spec:
             pathType: ImplementationSpecific
   tls:
     - hosts:
-        - {{ .Values.consumer.host }}
+        - {{ .Values.producer.host }}
       secretName: producer-labapp-acend-ch
