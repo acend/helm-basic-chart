@@ -5,7 +5,7 @@ metadata:
     kubernetes.io/tls-acme: "true"
   labels:
     app: {{ include "helm-basic-chart.fullname" . }}-consumer
-  name: data-consumer
+  name: {{ include "helm-basic-chart.fullname" . }}-consumer
 spec:
   rules:
     - host: consumer-user00.labapp.acend.ch
@@ -13,7 +13,7 @@ spec:
         paths:
           - backend:
               service:
-                name: data-consumer
+                name: {{ include "helm-basic-chart.fullname" . }}-consumer
                 port:
                   number: 8080
             path: /
