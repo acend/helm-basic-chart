@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: {{ include "helm-basic-chart.fullname" . }}-producer
-  name: data-producer
+  name: {{ include "helm-basic-chart.fullname" . }}-producer
 spec:
   replicas: 1
   selector:
