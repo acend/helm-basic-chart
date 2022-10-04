@@ -8,7 +8,7 @@ producer:
     requests:
       cpu: 50m
       memory: 100Mi
-  tag: v1.0.0
+  tag: latest
 
 consumer:
   logLevel: INFO
@@ -20,4 +20,4 @@ consumer:
     requests:
       cpu: 50m
       memory: 100Mi
-  tag: v1.0.0
+  tag: latest
