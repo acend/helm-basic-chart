@@ -1,4 +1,6 @@
 producer:
+  host: producer-<username>.labapp.acend.ch
 
 consumer:
   tag: latest
+  host: consumer-<username>.labapp.acend.ch

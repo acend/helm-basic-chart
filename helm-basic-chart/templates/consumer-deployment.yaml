@@ -21,6 +21,11 @@ spec:
       containers:
         - image: quay.io/puzzle/quarkus-techlab-data-consumer:{{ .Values.consumer.tag }}
           imagePullPolicy: Always
+          env:
+          - name: QUARKUS_LOG_LEVEL
+            value: "DEBUG"            
+          - name: DATA_PRODUCER_API_MP_REST_URL
+            value: http://{{ include "helm-basic-chart.fullname" . }}-producer:8080
           livenessProbe:
             failureThreshold: 5
             httpGet:
